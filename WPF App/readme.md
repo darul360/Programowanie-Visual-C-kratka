@@ -1,4 +1,4 @@
-WPF APP
+#WPF APP
 
 Components:
 -SQL database connection
