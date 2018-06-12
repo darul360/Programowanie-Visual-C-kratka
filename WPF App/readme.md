@@ -1,5 +1,4 @@
-#WPF APP
-
+# WPF APP
 Components:
 -SQL database connection
 -API for usage of database(CRUD)
