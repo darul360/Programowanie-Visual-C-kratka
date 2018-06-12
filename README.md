@@ -1,11 +1,6 @@
-# Programowanie-Visual-C-kratka
-WPF APP
+# Programowanie VisualStudio [C#]
 
-Components:
--SQL database connection
--API for usage of database(CRUD)
--MVVM model  for GUI
-  -Pure XAML, binding included
-  -No back-code
-  -INotifyPropertyChanged
-  -IDataErrorInfo & Validation Rule Mapping
+Projekty realizowane na IV semestrze informatyki na Politechnice Łódzkiej.<br />
+Zawartość folderu:<br />
+-Projekt okienkowy(cmd/debugger) do serializacji JSON/XML/Własna<br />
+-Projekt aplikacji WPF, która łączy się z bazą SQL.<br />
