@@ -1,0 +1,117 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Data;
+
+namespace Repository
+{
+    class SQLEditor 
+    {
+        public void AddCard(string CardType, string CardNumber, int ExpMonth, int ExpYear, DateTime modifiedDate)
+        {
+            byte value = Convert.ToByte(ExpMonth);
+            short shortExpYear = Convert.ToInt16(ExpYear);
+
+            using (AdventureWorks2017Entities1 data = new AdventureWorks2017Entities1())
+            {
+                CreditCard creditCard = new CreditCard();
+
+                creditCard.CardType = CardType;
+                creditCard.CardNumber = CardNumber;
+                creditCard.ExpMonth = value;
+                creditCard.ExpYear = shortExpYear;
+                creditCard.ModifiedDate = modifiedDate;
+                data.CreditCard.Add(creditCard);
+                data.SaveChanges();
+            }
+
+        }
+
+        public void DeleteCard(String CardNumber)
+        {
+            using (AdventureWorks2017Entities1 data = new AdventureWorks2017Entities1())
+            {
+                CreditCard creCard = data.CreditCard.SingleOrDefault(i => i.CardNumber == CardNumber);
+
+                if (creCard != null)
+                {
+                    data.CreditCard.Remove(creCard);
+                    data.SaveChanges();
+                }
+
+            }
+        }
+
+        public IEnumerable<CreditCard> GetAllCards()
+        {
+            using (AdventureWorks2017Entities1 data = new AdventureWorks2017Entities1())
+            {
+                List<CreditCard> list = (from i in data.CreditCard select i).ToList();
+                return list;
+            }
+        }
+
+        public IEnumerable<String> GetAllCCType()
+        {
+            using (AdventureWorks2017Entities1 data = new AdventureWorks2017Entities1())
+            {
+                List<CreditCard> list = (from i in data.CreditCard select i).ToList();
+                List<string> types=new List<string>();
+                foreach(var i in list)
+                {
+                    types.Add(i.CardType);
+                }
+                return types;
+            }
+        }
+        public IEnumerable<String> GetAllCCNumber()
+        {
+            using (AdventureWorks2017Entities1 data = new AdventureWorks2017Entities1())
+            {
+                List<CreditCard> list = (from i in data.CreditCard select i).ToList();
+                List<string> types = new List<string>();
+                foreach (var i in list)
+                {
+                    types.Add(i.CardNumber);
+                }
+                return types;
+            }
+        }
+
+        public object GetCard(string CardNumber)
+        {
+            using (AdventureWorks2017Entities1 data = new AdventureWorks2017Entities1())
+            {
+                Object card = (from i in data.CreditCard
+                               where i.CardNumber == CardNumber
+                               select i).FirstOrDefault();
+                return card;
+            }
+        }
+
+        public void UpdateCardExpDate(string CardNumber, int ExpMonth, int ExpYear)
+        {
+            byte value = Convert.ToByte(ExpMonth);
+            short shortExpYear = Convert.ToInt16(ExpYear);
+            using (AdventureWorks2017Entities1 data = new AdventureWorks2017Entities1())
+            {
+                var old = data.CreditCard.SingleOrDefault(i => i.CardNumber == CardNumber);
+                old.ExpMonth = value;
+                old.ExpYear = shortExpYear;
+                data.SaveChanges();
+            }
+        }
+
+        public void UpdateCardType(string CardNumber, string CardType)
+        {
+            using (AdventureWorks2017Entities1 data = new AdventureWorks2017Entities1())
+            {
+                CreditCard old = data.CreditCard.SingleOrDefault(i => i.CardNumber == CardNumber);
+                old.CardType = CardType;
+                data.SaveChanges();
+            }
+        }
+    }
+}

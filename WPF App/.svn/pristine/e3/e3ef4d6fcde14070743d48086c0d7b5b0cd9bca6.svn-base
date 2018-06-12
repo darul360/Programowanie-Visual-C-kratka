@@ -1,0 +1,28 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Repository;
+
+namespace RepositoryTest
+{
+    [TestClass]
+    public class UnitTest1
+    {
+        [TestMethod]
+        public void TestAdding() // Czemu w każdym projekcie 3ba dodawać referencję do source db ?
+        {
+            ApiCatalyst apc = new ApiCatalyst();
+            DateTime date = new DateTime(2008, 11, 3);
+            apc.CatalystAddCard("Simple", "123", 10, 2021, date);
+
+        }
+
+        [TestMethod]
+        public void TestDeleting() // Czemu w każdym projekcie 3ba dodawać referencję do source db ?
+        {
+            ApiCatalyst apc = new ApiCatalyst();
+            apc.CatalystDeleteCard("K0011");
+
+        }
+
+    }
+}

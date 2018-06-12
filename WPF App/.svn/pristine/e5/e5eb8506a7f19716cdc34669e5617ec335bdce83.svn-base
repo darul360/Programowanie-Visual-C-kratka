@@ -1,0 +1,57 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zadanie_4"
+        xmlns:local1="clr-namespace:Zadanie_4.ViewModel"
+        xmlns:local2="clr-namespace:Zadanie_4.Model"
+        xmlns:Data="clr-namespace:Data;assembly=Data" x:Class="Zadanie_4.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="476" Width="800">
+
+    <Window.DataContext>
+        <local1:ShowAllCardsViewM/>
+    </Window.DataContext>
+
+
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/MainWindowWallpaper.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="79*"/>
+            <RowDefinition Height="70*"/>
+        </Grid.RowDefinitions>
+        <Button Content="DODAJ" HorizontalAlignment="Left" Height="69" Margin="46,109,0,0" VerticalAlignment="Top" Width="151" BorderBrush="#FF837E7E" Background="White" Opacity="0.6" FontFamily="Segoe UI Light" FontSize="24" Command="{Binding AddButton}"/>
+        <Rectangle HorizontalAlignment="Left" Height="63" Margin="0,25,0,0" Stroke="Black" VerticalAlignment="Top" Width="793" Fill="White" Opacity="0.5"/>
+        <Label Content="Wybierz operację" HorizontalAlignment="Left" Height="63" Margin="216,25,0,0" VerticalAlignment="Top" Width="397" FontSize="36" FontFamily="Source Code Pro Light" RenderTransformOrigin="0.505,0.894" Foreground="Black" Background="{x:Null}"/>
+        <Button Content="USUŃ" HorizontalAlignment="Left" Height="69" Margin="197,109,0,0" VerticalAlignment="Top" Width="141" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontSize="24" FontFamily="Segoe UI Light" Command="{Binding DelButton}"/>
+        <Button Content="     Modyfikuj&#xA;dane wygasania&#xA;         karty" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="69" Margin="338,109,0,0" VerticalAlignment="Top" Width="145" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontFamily="Segoe UI Light" FontSize="16" Command="{Binding ExpButton}"/>
+        <Button Content="Modyfikuj &#xA; typ karty" HorizontalAlignment="Left" HorizontalContentAlignment="Center"  Height="69" Margin="483,109,0,0" VerticalAlignment="Top" Width="130" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontFamily="Segoe UI Light" FontSize="18" Command="{Binding TypeButton}"/>
+        <Button Content="Tabela&#xD;&#xA;  kart" HorizontalAlignment="Left" Height="69" Margin="613,109,0,0" VerticalAlignment="Top" Width="131" BorderBrush="#FF707070" Background="White" Opacity="0.6" FontFamily="Segoe UI Light" FontSize="18" Command="{Binding ShowAllButton}"/>
+        <Button Content="ODŚWIEŻ" HorizontalAlignment="Left" Height="34" Margin="46,172.333,0,0" Grid.Row="1" VerticalAlignment="Top" Width="698" Command="{Binding Refresh}" OpacityMask="#FF30497A" BorderBrush="White" Background="#FF595E59" Opacity="0.9" FontFamily="Segoe UI Light" FontSize="18"/>
+        <ListView ItemsSource="{Binding Cards}" SelectedItem="{Binding SelectedItem}" Background="#FFBADCBA" Margin="108,183,280.333,42.667" Grid.RowSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Numer karty" Width="200" DisplayMemberBinding="{Binding CardNumber}" />
+                    <GridViewColumn Header="Typ karty" Width="200" DisplayMemberBinding="{Binding CardType}" />
+                </GridView>
+
+            </ListView.View>
+        </ListView>
+        <TextBox HorizontalAlignment="Left" Height="18" Margin="533,209,0,0" TextWrapping="Wrap" Text="{Binding Type}" VerticalAlignment="Top" Width="211"/>
+        <TextBox HorizontalAlignment="Left" Height="18" Margin="533,10.333,0,0" TextWrapping="Wrap" Text="{Binding Number}" VerticalAlignment="Top" Width="211" Grid.Row="1"/>
+        <TextBox HorizontalAlignment="Left" Height="18" Margin="533,50.333,0,0" TextWrapping="Wrap" Text="{Binding Month}" VerticalAlignment="Top" Width="211" Grid.Row="1"/>
+        <TextBox HorizontalAlignment="Left" Height="18" Margin="533,89.333,0,0" TextWrapping="Wrap" Text="{Binding Year}" VerticalAlignment="Top" Width="211" Grid.Row="1"/>
+        <TextBox HorizontalAlignment="Left" Height="18" Margin="533,133.333,0,0" TextWrapping="Wrap" Text="{Binding ModDate}" VerticalAlignment="Top" Width="211" Grid.Row="1"/>
+        <Label Content="Typ karty" HorizontalAlignment="Left" Height="26" Margin="528,183,0,0" VerticalAlignment="Top" Width="211" Foreground="White" FontFamily="Segoe UI Light"/>
+        <Label Content="Numer karty" HorizontalAlignment="Left" Height="26" Margin="528,223,0,0" VerticalAlignment="Top" Width="210" Foreground="White" FontFamily="Segoe UI Light" Grid.RowSpan="2"/>
+        <Label Content="Miesiąc wygasania" HorizontalAlignment="Left" Height="26" Margin="528,24.333,0,0" VerticalAlignment="Top" Width="210" Foreground="White" FontFamily="Segoe UI Light" Grid.Row="1"/>
+        <Label Content="Rok wygasania" HorizontalAlignment="Left" Height="26" Margin="528,63.333,0,0" VerticalAlignment="Top" Width="210" Foreground="White" FontFamily="Segoe UI Light" Grid.Row="1"/>
+        <Label Content="Data modyfikacji" HorizontalAlignment="Left" Height="26" Margin="529,107.333,0,0" VerticalAlignment="Top" Width="210" Foreground="White" FontFamily="Segoe UI Light" Grid.Row="1"/>
+
+
+    </Grid>
+</Window>
